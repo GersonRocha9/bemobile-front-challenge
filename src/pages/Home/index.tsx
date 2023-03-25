@@ -1,7 +1,7 @@
-import { Container, Header } from './styles'
+import { EmployeeTable, SearchInput, Typography } from '../../components'
+import { Container, Header, SectionSearchContainer } from './styles'
 
 import Logo from '../../assets/logo.svg'
-import { EmployeeTable } from '../../components'
 
 export const Home = () => {
   return (
@@ -10,11 +10,13 @@ export const Home = () => {
         <img src={Logo} alt="Be mobile Logo" />
       </Header>
 
-      <section style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <h1>Funcionários</h1>
+      <SectionSearchContainer>
+        <Typography size={24} weight={500}>
+          Funcionários
+        </Typography>
 
-        <input type="text" />
-      </section>
+        <SearchInput placeholder="Pesquisar" />
+      </SectionSearchContainer>
 
       <EmployeeTable />
     </Container>
