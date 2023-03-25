@@ -11,9 +11,7 @@ export const Home = () => {
   const [search, setSearch] = useState('')
 
   function getEmployeesFromApi(searchQuery?: string) {
-    const endpoint = searchQuery
-      ? `/employees?name_like=${searchQuery}`
-      : '/employees'
+    const endpoint = searchQuery ? `/employees?q=${searchQuery}` : '/employees'
     api.get(endpoint).then((response) => {
       setEmployees(response.data)
     })
