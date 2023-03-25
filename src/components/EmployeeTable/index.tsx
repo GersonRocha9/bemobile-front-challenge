@@ -1,33 +1,16 @@
-import { useEffect, useState } from 'react'
 import { formatDate, formatPhoneNumber } from '../../utils'
 import { Img, Table, Td, Th } from './styles'
 
 import { useTheme } from 'styled-components'
+import { EmployeeProps } from '../../@types/employee'
 import { Typography } from '../../components'
-import { api } from '../../services'
 
-interface Employee {
-  id: number
-  name: string
-  job: string
-  admission_date: string
-  phone: string
-  image: string
+interface Props {
+  employees: EmployeeProps[]
 }
 
-export const EmployeeTable = () => {
-  const [employees, setEmployees] = useState<Employee[]>([])
+export const EmployeeTable = ({ employees }: Props) => {
   const theme = useTheme()
-
-  function getEmployeesFromApi() {
-    api.get('/employees').then((response) => {
-      setEmployees(response.data)
-    })
-  }
-
-  useEffect(() => {
-    getEmployeesFromApi()
-  }, [])
 
   return (
     <Table>
