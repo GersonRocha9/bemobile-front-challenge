@@ -7,9 +7,10 @@ import { Typography } from '../../components'
 
 interface Props {
   employees: EmployeeProps[]
+  loading?: boolean
 }
 
-export const EmployeeTable = ({ employees }: Props) => {
+export const EmployeeTable = ({ employees, loading }: Props) => {
   const theme = useTheme()
 
   return (
@@ -43,27 +44,43 @@ export const EmployeeTable = ({ employees }: Props) => {
           </Th>
         </tr>
       </thead>
-      <tbody>
-        {employees.map((employee) => (
-          <tr key={employee.id}>
-            <Td>
-              <Img src={employee.image} alt={employee.name} />
-            </Td>
-            <Td>
-              <Typography>{employee.name}</Typography>
-            </Td>
-            <Td>
-              <Typography>{employee.job}</Typography>
-            </Td>
-            <Td>
-              <Typography>{formatDate(employee.admission_date)}</Typography>
-            </Td>
-            <Td>
-              <Typography>{formatPhoneNumber(employee.phone)}</Typography>
+      {loading ? (
+        <tr>
+          <Td colSpan={5}>
+            <Typography>Carregando...</Typography>
+          </Td>
+        </tr>
+      ) : employees.length > 0 ? (
+        <tbody>
+          {employees.map((employee) => (
+            <tr key={employee.id}>
+              <Td>
+                <Img src={employee.image} alt={employee.name} />
+              </Td>
+              <Td>
+                <Typography>{employee.name}</Typography>
+              </Td>
+              <Td>
+                <Typography>{employee.job}</Typography>
+              </Td>
+              <Td>
+                <Typography>{formatDate(employee.admission_date)}</Typography>
+              </Td>
+              <Td>
+                <Typography>{formatPhoneNumber(employee.phone)}</Typography>
+              </Td>
+            </tr>
+          ))}
+        </tbody>
+      ) : (
+        <tbody>
+          <tr>
+            <Td colSpan={5}>
+              <Typography>Nenhum funcionário encontrado</Typography>
             </Td>
           </tr>
-        ))}
-      </tbody>
+        </tbody>
+      )}
     </Table>
   )
 }
