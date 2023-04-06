@@ -35,4 +35,18 @@ describe('EmployeeTable', () => {
     expect(dateCell).toBeInTheDocument()
     expect(phoneCell).toBeInTheDocument()
   })
+
+  it('renders the employee user image correctly', () => {
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <EmployeeTable employees={employees} />
+      </ThemeProvider>
+    )
+
+    const avatar = screen.getByAltText('John Doe')
+
+    expect(avatar).toBeInTheDocument()
+
+    expect(avatar).toHaveAttribute('src', 'https://example.com/image.png')
+  })
 })
