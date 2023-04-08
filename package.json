@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "server": "json-server --watch ./database.json",
+    "server": "json-server --watch ./database.json -d 1000",
     "preview": "vite preview",
     "test": "jest"
   },

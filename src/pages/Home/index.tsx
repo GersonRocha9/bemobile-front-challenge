@@ -15,16 +15,12 @@ export const Home = () => {
 
   function getEmployeesFromApi(searchQuery?: string) {
     setLoading(true)
-    // setTimeout apenas para simular o loading de uma requisição
-    setTimeout(() => {
-      const endpoint = searchQuery
-        ? `/employees?q=${searchQuery}`
-        : '/employees'
-      api.get(endpoint).then((response) => {
-        setEmployees(response.data)
-        setLoading(false)
-      })
-    }, 1000)
+
+    const endpoint = searchQuery ? `/employees?q=${searchQuery}` : '/employees'
+    api.get(endpoint).then((response) => {
+      setEmployees(response.data)
+      setLoading(false)
+    })
   }
 
   useEffect(() => {
